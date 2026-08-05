@@ -1,0 +1,35 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() { return request.auth != null && request.auth.token.role == 'admin'; }
+    function isSchoolStaff(schoolId) {
+      return request.auth != null && request.auth.token.role == 'school'
+        && request.auth.token.schoolId == schoolId;
+    }
+
+    // School & university logos: publicly readable (branding must render pre-login),
+    // writable only by the owning school's staff or the platform admin.
+    match /schoolLogos/{schoolId}/{fileName} {
+      allow read: if true;
+      allow write: if (isAdmin() || isSchoolStaff(schoolId))
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    match /universityLogos/{universityId}/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin()
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    match /announcementImages/{fileName} {
+      allow read: if true;
+      allow write: if isAdmin()
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+  }
+}

@@ -1,0 +1,166 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function role() { return request.auth.token.role; }
+    function isAdmin() { return request.auth != null && role() == 'admin'; }
+    function isSchoolStaff(schoolId) {
+      return request.auth != null && role() == 'school' && request.auth.token.schoolId == schoolId;
+    }
+    function isSelfStudent(schoolId, uid) {
+      return request.auth != null && role() == 'student'
+        && request.auth.token.schoolId == schoolId && request.auth.uid == uid;
+    }
+    function isStudentOfSchool(schoolId) {
+      return request.auth != null && role() == 'student' && request.auth.token.schoolId == schoolId;
+    }
+    function signedIn() { return request.auth != null; }
+    function hasEntitlement(serviceId) {
+      return signedIn() && (role() == 'school' || role() == 'student') && (
+        exists(/databases/$(database)/documents/schools/$(request.auth.token.schoolId)/entitlements/$(serviceId))
+        || (role() == 'student'
+          && exists(/databases/$(database)/documents/schools/$(request.auth.token.schoolId)/students/$(request.auth.uid)/entitlements/$(serviceId)))
+      );
+    }
+
+    match /users/{uid} {
+      allow read: if signedIn() && (isAdmin() || request.auth.uid == uid);
+      allow write: if false; // only Cloud Functions (Admin SDK) write user docs
+    }
+
+    match /admins/{uid} {
+      allow read, write: if isAdmin();
+    }
+
+    match /schools/{schoolId} {
+      allow read: if true; // public branding, must be readable pre-login
+      allow create, delete: if isAdmin();
+      // School staff may edit their own school's profile/branding (name, logo, colors);
+      // only admin may change slug/active status (tenant provisioning concerns).
+      allow update: if isAdmin()
+        || (isSchoolStaff(schoolId)
+          && request.resource.data.slug == resource.data.slug
+          && request.resource.data.active == resource.data.active);
+
+      match /settings/private {
+        allow read, write: if isAdmin();
+      }
+
+      match /staff/{uid} {
+        allow read: if isAdmin() || isSchoolStaff(schoolId);
+        allow write: if isAdmin();
+      }
+
+      match /students/{studentId} {
+        allow read: if isAdmin() || isSchoolStaff(schoolId) || isSelfStudent(schoolId, studentId);
+        allow create: if isAdmin() || isSchoolStaff(schoolId);
+        // profileComplete may only flip via the submitStudentProfile Cloud Function (Admin SDK,
+        // mandatory-field validated) — a direct client write cannot self-certify a complete profile.
+        allow update: if isAdmin() || isSchoolStaff(schoolId)
+          || (isSelfStudent(schoolId, studentId)
+            && request.resource.data.get('profileComplete', false) == resource.data.get('profileComplete', false));
+        allow delete: if isAdmin() || isSchoolStaff(schoolId);
+
+        match /testResults/{resultId} {
+          allow read: if isAdmin() || isSchoolStaff(schoolId) || isSelfStudent(schoolId, studentId);
+          allow write: if false; // only via submitRiasecTest Cloud Function
+        }
+
+        match /entitlements/{serviceId} {
+          allow read: if isAdmin() || isSchoolStaff(schoolId) || isSelfStudent(schoolId, studentId);
+          allow write: if false; // only via onOrderConfirmed trigger
+        }
+      }
+
+      match /entitlements/{serviceId} {
+        // Students may check their own school's entitlements — e.g. ServiceDetailPage
+        // needs to know if a service is unlocked school-wide, not just for themselves.
+        allow read: if isAdmin() || isSchoolStaff(schoolId) || isStudentOfSchool(schoolId);
+        allow write: if false; // only via onOrderConfirmed trigger
+      }
+    }
+
+    // Collection-group reads so admin dashboards can query across every school.
+    match /{path=**}/students/{studentId} {
+      allow read: if isAdmin();
+    }
+    match /{path=**}/testResults/{resultId} {
+      allow read: if isAdmin();
+    }
+
+    match /inviteTokens/{token} {
+      allow read: if false; // redemption only via callable Cloud Functions (Admin SDK)
+      allow create: if isAdmin() || isSchoolStaff(request.resource.data.schoolId);
+      allow update, delete: if isAdmin() || isSchoolStaff(resource.data.schoolId);
+    }
+
+    match /services/{serviceId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    match /universities/{universityId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+
+      match /programs/{programId} {
+        allow read: if signedIn();
+        allow write: if isAdmin();
+      }
+    }
+
+    match /riasecQuestions/{questionId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    match /announcements/{announcementId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    match /orders/{orderId} {
+      allow read: if isAdmin()
+        || isSchoolStaff(resource.data.schoolId)
+        || (signedIn() && resource.data.studentId == request.auth.uid);
+      allow write: if false; // all writes via Cloud Functions (createOrder, webhooks, admin confirm)
+    }
+
+    match /forms/{formId} {
+      allow read: if signedIn(); // same visibility convention as /services — UI hides it, submitFormResponse enforces entitlement
+      allow write: if isAdmin();
+    }
+
+    match /formSubmissions/{submissionId} {
+      allow read: if isAdmin()
+        || isSchoolStaff(resource.data.schoolId)
+        || (signedIn() && resource.data.studentId == request.auth.uid);
+      allow write: if false; // only via submitFormResponse / reviewFormSubmission Cloud Functions
+    }
+
+    // Test prep (TCF/TOEFL/SAT) — course + mock-test content is the paid product itself,
+    // so unlike /services and /forms it's gated behind the purchase entitlement, not just UI hiding.
+    match /testPrepCourses/{courseId} {
+      allow read: if isAdmin() || hasEntitlement(resource.data.serviceId);
+      allow write: if isAdmin();
+    }
+
+    match /testPrepTests/{testId} {
+      allow read: if isAdmin() || hasEntitlement(resource.data.serviceId);
+      allow write: if isAdmin();
+    }
+
+    match /testPrepAnswerKeys/{testId} {
+      allow read: if false; // never client-readable — grading happens only inside submitTestPrepAttempt (Admin SDK)
+      allow write: if isAdmin();
+    }
+
+    match /testPrepAttempts/{attemptId} {
+      allow read: if isAdmin()
+        || isSchoolStaff(resource.data.schoolId)
+        || (signedIn() && resource.data.studentId == request.auth.uid);
+      allow write: if false; // only via submitTestPrepAttempt Cloud Function
+    }
+  }
+}

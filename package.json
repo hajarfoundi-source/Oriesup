@@ -1,0 +1,24 @@
+{
+  "name": "oriesup",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "functions",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace apps/web",
+    "build:web": "npm run build --workspace apps/web",
+    "build:functions": "npm run build --workspace functions",
+    "build": "npm run build --workspace packages/shared-types && npm run build:functions && npm run build:web",
+    "emulators": "firebase emulators:start --import=./.emulator-data --export-on-exit=./.emulator-data",
+    "seed": "tsx scripts/seed.ts",
+    "seed:testprep": "tsx scripts/seedTestPrep.ts",
+    "lint": "npm run lint --workspace apps/web && npm run lint --workspace functions"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}

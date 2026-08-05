@@ -1,0 +1,225 @@
+{
+  "appName": "Oriesup",
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "profile": "Mon profil",
+    "purchases": "Mes achats",
+    "students": "Élèves",
+    "invites": "Invitations",
+    "branding": "Personnalisation",
+    "schools": "Établissements",
+    "services": "Services",
+    "universities": "Universités",
+    "payments": "Paiements",
+    "test": "Test d'orientation",
+    "results": "Mes résultats",
+    "logout": "Se déconnecter"
+  },
+  "auth": {
+    "login": "Connexion",
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "signIn": "Se connecter",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "createAccount": "Créer mon compte",
+    "joinSchool": "Rejoindre {{school}}"
+  },
+  "landing": {
+    "title": "Trouve ta voie après le bac",
+    "subtitle": "Un test d'orientation simple et rapide pour découvrir les filières et universités qui te correspondent.",
+    "cta": "Commencer le test"
+  },
+  "riasec": {
+    "intro": "Réponds selon ce que tu aimerais faire, pas selon ce que tu \"devrais\" faire. Il n'y a pas de bonne ou de mauvaise réponse.",
+    "start": "Commencer le test",
+    "next": "Suivant",
+    "submit": "Voir mes résultats",
+    "yourCode": "Ton profil RIASEC",
+    "recommendedPrograms": "Filières recommandées pour toi"
+  },
+  "common": {
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "loading": "Chargement...",
+    "language": "Langue",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "select": "Sélectionner...",
+    "remove": "Retirer",
+    "total": "Total"
+  },
+  "profile": {
+    "steps": {
+      "personal": "Personnel",
+      "education": "Scolarité",
+      "languages": "Langues",
+      "tests": "Tests",
+      "program": "Programme"
+    },
+    "saveButton": "Enregistrer mon profil",
+    "personal": {
+      "title": "Informations personnelles",
+      "fullLegalName": "Nom légal complet",
+      "idDocumentType": "Type de document d'identité",
+      "passport": "Passeport",
+      "nationalId": "Carte d'identité (CIN)",
+      "idDocumentNumber": "Numéro du document",
+      "dateOfBirth": "Date de naissance",
+      "placeOfBirth": "Lieu de naissance",
+      "motherName": "Nom de la mère",
+      "fatherName": "Nom du père",
+      "email": "Email",
+      "phone": "Téléphone",
+      "gender": "Genre",
+      "female": "Femme",
+      "male": "Homme",
+      "parentEmail": "Email du parent",
+      "parentPhone": "Téléphone du parent"
+    },
+    "education": {
+      "title": "Parcours scolaire",
+      "hasDegree": "J'ai déjà obtenu un diplôme",
+      "lastDegreeAwarded": "Dernier diplôme obtenu",
+      "finalGrade": "Note finale",
+      "degreeSpeciality": "Spécialité du diplôme",
+      "degreeInstitution": "Établissement",
+      "educationLevel": "Niveau scolaire actuel",
+      "graduationDate": "Date d'obtention prévue",
+      "speciality": "Filière",
+      "institution": "Établissement"
+    },
+    "languages": {
+      "title": "Langues parlées",
+      "subtitle": "Sélectionne les langues que tu parles. Sélectionne-en au moins une.",
+      "noTestTaken": "Aucun test de niveau passé pour cette langue",
+      "testTakenLabel": "Test passé",
+      "score": "Score",
+      "testName": "Nom du test",
+      "actuallyTookTest": "J'ai en fait passé un test",
+      "otherLanguageTitle": "Une autre langue ?",
+      "languageLabel": "Langue",
+      "level": "Niveau",
+      "removeLanguage": "Retirer cette langue",
+      "customTestTaken": "J'ai passé un test de niveau pour cette langue",
+      "addLanguage": "+ Ajouter une langue"
+    },
+    "admissionTests": {
+      "title": "Tests d'admission universitaire",
+      "subtitle": "Sélectionne les tests que tu as passés et indique ton score.",
+      "noneTaken": "Je n'ai passé aucun test d'admission"
+    },
+    "programChoice": {
+      "title": "Programme souhaité",
+      "subtitle": "Quel diplôme et quel programme aimerais-tu poursuivre ?",
+      "degreeType": "Type de diplôme",
+      "programName": "Programme souhaité (ex: Bachelor en Sciences Humaines)"
+    }
+  },
+  "student": {
+    "activate": {
+      "title": "Active ton compte",
+      "subtitle": "Choisis ton email et ton mot de passe pour finaliser ton inscription.",
+      "newPassword": "Nouveau mot de passe",
+      "submit": "Activer mon compte"
+    },
+    "results": {
+      "notTakenYet": "Tu n'as pas encore passé le test d'orientation.",
+      "points": "pts",
+      "noRecommendations": "Aucune recommandation disponible pour le moment — ton école n'a pas encore activé de service d'orientation."
+    },
+    "purchases": {
+      "title": "Mes achats",
+      "empty": "Tu n'as encore inscrit à aucun service.",
+      "browse": "Voir les services disponibles",
+      "followService": "Suivre ce service →",
+      "pendingManual": "En attente de confirmation par l'administration.",
+      "status": {
+        "pending": "En attente de paiement",
+        "processing": "Paiement en cours",
+        "confirmed": "Confirmé",
+        "failed": "Échec du paiement",
+        "cancelled": "Annulé"
+      },
+      "method": {
+        "stripe": "Carte bancaire",
+        "cmi": "CMI",
+        "manual": "Manuel (espèces / virement)"
+      }
+    },
+    "cart": {
+      "title": "Mon panier",
+      "empty": "Ton panier est vide.",
+      "remove": "Retirer",
+      "total": "Total",
+      "payByCard": "Payer par carte",
+      "payManual": "Paiement manuel (espèces / virement)",
+      "registeredTitle": "Inscription enregistrée",
+      "pendingManual": "En attente de confirmation par l'administration."
+    },
+    "services": {
+      "sectionTitle": "Services",
+      "viewDetails": "Voir les détails",
+      "unlocked": "Débloqué — accès actif",
+      "alreadyInCart": "Déjà dans le panier",
+      "addToCart": "Ajouter au panier",
+      "process": "Déroulement",
+      "advantages": "Avantages",
+      "notes": "Notes",
+      "availableForms": "Formulaires disponibles",
+      "toFill": "À remplir",
+      "notFound": "Service introuvable."
+    },
+    "universities": {
+      "sectionTitle": "Universités"
+    },
+    "formStatus": {
+      "submitted": "Soumis, en attente de revue",
+      "in_review": "En cours de revue",
+      "approved": "Approuvé",
+      "changes_requested": "Modifications demandées"
+    },
+    "forms": {
+      "notFound": "Formulaire introuvable.",
+      "changesRequested": "Modifications demandées :",
+      "select": "Sélectionner...",
+      "submitted": "Formulaire envoyé avec succès.",
+      "update": "Mettre à jour ma soumission",
+      "submit": "Soumettre",
+      "backToService": "Retour au service"
+    },
+    "announcements": {
+      "title": "Annonces"
+    },
+    "testPrep": {
+      "open": "Ouvrir l'espace de préparation",
+      "locked": "Ce service n'est pas encore débloqué pour toi.",
+      "viewService": "Voir le service",
+      "courses": "Cours",
+      "noCourses": "Aucun cours disponible pour le moment.",
+      "mockTests": "Tests blancs",
+      "noTests": "Aucun test disponible pour le moment.",
+      "bestScore": "Meilleur score",
+      "backToTrack": "Retour",
+      "courseNotFound": "Cours introuvable.",
+      "testNotFound": "Test introuvable.",
+      "questions": "questions",
+      "timedWarning": "Chaque section est chronométrée et démarre dès que tu cliques sur \"Commencer\". Une fois le temps écoulé, tu passes automatiquement à la section suivante.",
+      "start": "Commencer",
+      "grading": "Correction en cours...",
+      "ungraded": "Non noté",
+      "correct": "bonnes réponses",
+      "reviewYourWriting": "relis ta réponse",
+      "yourAnswer": "Ta réponse",
+      "noAnswer": "Aucune réponse donnée.",
+      "modelAnswer": "Réponse modèle",
+      "question": "Question",
+      "finish": "Terminer",
+      "nextSection": "Section suivante",
+      "listen": "Écouter",
+      "played": "Déjà écouté",
+      "words": "mots",
+      "minWords": "minimum {{count}} mots"
+    }
+  }
+}

@@ -1,0 +1,225 @@
+{
+  "appName": "Oriesup",
+  "nav": {
+    "dashboard": "Dashboard",
+    "profile": "My profile",
+    "purchases": "My purchases",
+    "students": "Students",
+    "invites": "Invites",
+    "branding": "Branding",
+    "schools": "Schools",
+    "services": "Services",
+    "universities": "Universities",
+    "payments": "Payments",
+    "test": "Orientation test",
+    "results": "My results",
+    "logout": "Log out"
+  },
+  "auth": {
+    "login": "Login",
+    "email": "Email address",
+    "password": "Password",
+    "signIn": "Sign in",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "createAccount": "Create my account",
+    "joinSchool": "Join {{school}}"
+  },
+  "landing": {
+    "title": "Find your path after high school",
+    "subtitle": "A quick, simple orientation test to discover the programs and universities that fit you.",
+    "cta": "Start the test"
+  },
+  "riasec": {
+    "intro": "Answer based on what you'd enjoy doing, not what you think you \"should\" do. There are no right or wrong answers.",
+    "start": "Start the test",
+    "next": "Next",
+    "submit": "See my results",
+    "yourCode": "Your RIASEC profile",
+    "recommendedPrograms": "Programs recommended for you"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "loading": "Loading...",
+    "language": "Language",
+    "previous": "Previous",
+    "next": "Next",
+    "select": "Select...",
+    "remove": "Remove",
+    "total": "Total"
+  },
+  "profile": {
+    "steps": {
+      "personal": "Personal",
+      "education": "Education",
+      "languages": "Languages",
+      "tests": "Tests",
+      "program": "Program"
+    },
+    "saveButton": "Save my profile",
+    "personal": {
+      "title": "Personal information",
+      "fullLegalName": "Full legal name",
+      "idDocumentType": "ID document type",
+      "passport": "Passport",
+      "nationalId": "National ID card",
+      "idDocumentNumber": "Document number",
+      "dateOfBirth": "Date of birth",
+      "placeOfBirth": "Place of birth",
+      "motherName": "Mother's name",
+      "fatherName": "Father's name",
+      "email": "Email",
+      "phone": "Phone",
+      "gender": "Gender",
+      "female": "Female",
+      "male": "Male",
+      "parentEmail": "Parent's email",
+      "parentPhone": "Parent's phone"
+    },
+    "education": {
+      "title": "Education background",
+      "hasDegree": "I already hold a diploma",
+      "lastDegreeAwarded": "Last diploma obtained",
+      "finalGrade": "Final grade",
+      "degreeSpeciality": "Diploma speciality",
+      "degreeInstitution": "Institution",
+      "educationLevel": "Current education level",
+      "graduationDate": "Expected graduation date",
+      "speciality": "Track / Major",
+      "institution": "Institution"
+    },
+    "languages": {
+      "title": "Languages spoken",
+      "subtitle": "Select the languages you speak. Select at least one.",
+      "noTestTaken": "No proficiency test taken for this language",
+      "testTakenLabel": "Test taken",
+      "score": "Score",
+      "testName": "Test name",
+      "actuallyTookTest": "I actually took a test",
+      "otherLanguageTitle": "Another language?",
+      "languageLabel": "Language",
+      "level": "Level",
+      "removeLanguage": "Remove this language",
+      "customTestTaken": "I took a proficiency test for this language",
+      "addLanguage": "+ Add a language"
+    },
+    "admissionTests": {
+      "title": "University admission tests",
+      "subtitle": "Select the tests you've taken and enter your score.",
+      "noneTaken": "I haven't taken any admission tests"
+    },
+    "programChoice": {
+      "title": "Desired program",
+      "subtitle": "Which diploma and program would you like to pursue?",
+      "degreeType": "Diploma type",
+      "programName": "Desired program (e.g. Bachelor in Humanities)"
+    }
+  },
+  "student": {
+    "activate": {
+      "title": "Activate your account",
+      "subtitle": "Choose your email and password to complete your registration.",
+      "newPassword": "New password",
+      "submit": "Activate my account"
+    },
+    "results": {
+      "notTakenYet": "You haven't taken the orientation test yet.",
+      "points": "pts",
+      "noRecommendations": "No recommendations available yet — your school hasn't activated an orientation service."
+    },
+    "purchases": {
+      "title": "My purchases",
+      "empty": "You haven't registered for any service yet.",
+      "browse": "See available services",
+      "followService": "Follow this service →",
+      "pendingManual": "Awaiting confirmation from the administration.",
+      "status": {
+        "pending": "Awaiting payment",
+        "processing": "Payment in progress",
+        "confirmed": "Confirmed",
+        "failed": "Payment failed",
+        "cancelled": "Cancelled"
+      },
+      "method": {
+        "stripe": "Card payment",
+        "cmi": "CMI",
+        "manual": "Manual (cash / transfer)"
+      }
+    },
+    "cart": {
+      "title": "My cart",
+      "empty": "Your cart is empty.",
+      "remove": "Remove",
+      "total": "Total",
+      "payByCard": "Pay by card",
+      "payManual": "Manual payment (cash / transfer)",
+      "registeredTitle": "Registration saved",
+      "pendingManual": "Awaiting confirmation from the administration."
+    },
+    "services": {
+      "sectionTitle": "Services",
+      "viewDetails": "View details",
+      "unlocked": "Unlocked — active access",
+      "alreadyInCart": "Already in cart",
+      "addToCart": "Add to cart",
+      "process": "Process",
+      "advantages": "Advantages",
+      "notes": "Notes",
+      "availableForms": "Available forms",
+      "toFill": "To fill in",
+      "notFound": "Service not found."
+    },
+    "universities": {
+      "sectionTitle": "Universities"
+    },
+    "formStatus": {
+      "submitted": "Submitted, awaiting review",
+      "in_review": "Under review",
+      "approved": "Approved",
+      "changes_requested": "Changes requested"
+    },
+    "forms": {
+      "notFound": "Form not found.",
+      "changesRequested": "Requested changes:",
+      "select": "Select...",
+      "submitted": "Form submitted successfully.",
+      "update": "Update my submission",
+      "submit": "Submit",
+      "backToService": "Back to service"
+    },
+    "announcements": {
+      "title": "Announcements"
+    },
+    "testPrep": {
+      "open": "Open the prep space",
+      "locked": "This service isn't unlocked for you yet.",
+      "viewService": "View the service",
+      "courses": "Courses",
+      "noCourses": "No courses available yet.",
+      "mockTests": "Mock tests",
+      "noTests": "No tests available yet.",
+      "bestScore": "Best score",
+      "backToTrack": "Back",
+      "courseNotFound": "Course not found.",
+      "testNotFound": "Test not found.",
+      "questions": "questions",
+      "timedWarning": "Each section is timed and starts as soon as you click \"Start.\" When time runs out, you'll automatically move on to the next section.",
+      "start": "Start",
+      "grading": "Grading...",
+      "ungraded": "Not scored",
+      "correct": "correct",
+      "reviewYourWriting": "review your answer",
+      "yourAnswer": "Your answer",
+      "noAnswer": "No answer given.",
+      "modelAnswer": "Model answer",
+      "question": "Question",
+      "finish": "Finish",
+      "nextSection": "Next section",
+      "listen": "Listen",
+      "played": "Already listened",
+      "words": "words",
+      "minWords": "minimum {{count}} words"
+    }
+  }
+}

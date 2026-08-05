@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-bg: #F4F1EC;
+  --brand-primary: #9BACD8;
+  --brand-cta: #F98513;
+}
+
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  @apply text-neutral-800 font-body;
+  background-color: var(--brand-bg);
+  background-image: url('/backgrounds/app-bg.jpg');
+  background-image: image-set(
+    url('/backgrounds/app-bg.webp') type('image/webp') 1x,
+    url('/backgrounds/app-bg.jpg') type('image/jpeg') 1x
+  );
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+  @apply font-display;
+}

@@ -1,0 +1,225 @@
+{
+  "appName": "Oriesup",
+  "nav": {
+    "dashboard": "لوحة التحكم",
+    "profile": "ملفي الشخصي",
+    "purchases": "مشترياتي",
+    "students": "التلاميذ",
+    "invites": "الدعوات",
+    "branding": "التخصيص",
+    "schools": "المؤسسات",
+    "services": "الخدمات",
+    "universities": "الجامعات",
+    "payments": "المدفوعات",
+    "test": "اختبار التوجيه",
+    "results": "نتائجي",
+    "logout": "تسجيل الخروج"
+  },
+  "auth": {
+    "login": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "signIn": "دخول",
+    "firstName": "الاسم الشخصي",
+    "lastName": "الاسم العائلي",
+    "createAccount": "إنشاء حسابي",
+    "joinSchool": "الانضمام إلى {{school}}"
+  },
+  "landing": {
+    "title": "اكتشف مسارك بعد البكالوريا",
+    "subtitle": "اختبار توجيه بسيط وسريع لاكتشاف الشعب والجامعات التي تناسبك.",
+    "cta": "ابدأ الاختبار"
+  },
+  "riasec": {
+    "intro": "أجب حسب ما تحب فعله، وليس حسب ما \"يجب\" عليك فعله. لا توجد إجابة صحيحة أو خاطئة.",
+    "start": "ابدأ الاختبار",
+    "next": "التالي",
+    "submit": "شاهد نتائجي",
+    "yourCode": "ملفك الشخصي RIASEC",
+    "recommendedPrograms": "الشعب الموصى بها لك"
+  },
+  "common": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "loading": "جارٍ التحميل...",
+    "language": "اللغة",
+    "previous": "السابق",
+    "next": "التالي",
+    "select": "اختر...",
+    "remove": "إزالة",
+    "total": "المجموع"
+  },
+  "profile": {
+    "steps": {
+      "personal": "شخصي",
+      "education": "الدراسة",
+      "languages": "اللغات",
+      "tests": "الاختبارات",
+      "program": "البرنامج"
+    },
+    "saveButton": "حفظ ملفي الشخصي",
+    "personal": {
+      "title": "المعلومات الشخصية",
+      "fullLegalName": "الاسم الكامل القانوني",
+      "idDocumentType": "نوع وثيقة الهوية",
+      "passport": "جواز السفر",
+      "nationalId": "البطاقة الوطنية (CIN)",
+      "idDocumentNumber": "رقم الوثيقة",
+      "dateOfBirth": "تاريخ الازدياد",
+      "placeOfBirth": "مكان الازدياد",
+      "motherName": "اسم الأم",
+      "fatherName": "اسم الأب",
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "gender": "الجنس",
+      "female": "أنثى",
+      "male": "ذكر",
+      "parentEmail": "البريد الإلكتروني لولي الأمر",
+      "parentPhone": "هاتف ولي الأمر"
+    },
+    "education": {
+      "title": "المسار الدراسي",
+      "hasDegree": "حصلت بالفعل على شهادة",
+      "lastDegreeAwarded": "آخر شهادة تم الحصول عليها",
+      "finalGrade": "المعدل النهائي",
+      "degreeSpeciality": "تخصص الشهادة",
+      "degreeInstitution": "المؤسسة",
+      "educationLevel": "المستوى الدراسي الحالي",
+      "graduationDate": "تاريخ الحصول المتوقع",
+      "speciality": "الشعبة",
+      "institution": "المؤسسة"
+    },
+    "languages": {
+      "title": "اللغات المتحدث بها",
+      "subtitle": "اختر اللغات التي تتحدثها. اختر واحدة على الأقل.",
+      "noTestTaken": "لم أجتز أي اختبار مستوى لهذه اللغة",
+      "testTakenLabel": "الاختبار الذي اجتزته",
+      "score": "النتيجة",
+      "testName": "اسم الاختبار",
+      "actuallyTookTest": "لقد اجتزت اختبارًا بالفعل",
+      "otherLanguageTitle": "لغة أخرى؟",
+      "languageLabel": "اللغة",
+      "level": "المستوى",
+      "removeLanguage": "إزالة هذه اللغة",
+      "customTestTaken": "اجتزت اختبار مستوى لهذه اللغة",
+      "addLanguage": "+ إضافة لغة"
+    },
+    "admissionTests": {
+      "title": "اختبارات القبول الجامعي",
+      "subtitle": "اختر الاختبارات التي اجتزتها وأدخل نتيجتك.",
+      "noneTaken": "لم أجتز أي اختبار قبول"
+    },
+    "programChoice": {
+      "title": "البرنامج المرغوب",
+      "subtitle": "ما الشهادة والبرنامج اللذان تود متابعتهما؟",
+      "degreeType": "نوع الشهادة",
+      "programName": "البرنامج المرغوب (مثال: إجازة في العلوم الإنسانية)"
+    }
+  },
+  "student": {
+    "activate": {
+      "title": "فعّل حسابك",
+      "subtitle": "اختر بريدك الإلكتروني وكلمة مرورك لإتمام تسجيلك.",
+      "newPassword": "كلمة مرور جديدة",
+      "submit": "تفعيل حسابي"
+    },
+    "results": {
+      "notTakenYet": "لم تجتز بعد اختبار التوجيه.",
+      "points": "نقطة",
+      "noRecommendations": "لا توجد توصيات متاحة حاليًا — لم تُفعّل مدرستك بعد خدمة توجيه."
+    },
+    "purchases": {
+      "title": "مشترياتي",
+      "empty": "لم تسجل بعد في أي خدمة.",
+      "browse": "عرض الخدمات المتاحة",
+      "followService": "تتبع هذه الخدمة ←",
+      "pendingManual": "في انتظار تأكيد الإدارة.",
+      "status": {
+        "pending": "في انتظار الدفع",
+        "processing": "الدفع قيد المعالجة",
+        "confirmed": "مؤكد",
+        "failed": "فشل الدفع",
+        "cancelled": "ملغى"
+      },
+      "method": {
+        "stripe": "بطاقة بنكية",
+        "cmi": "CMI",
+        "manual": "يدوي (نقدًا / تحويل)"
+      }
+    },
+    "cart": {
+      "title": "سلتي",
+      "empty": "سلتك فارغة.",
+      "remove": "إزالة",
+      "total": "المجموع",
+      "payByCard": "الدفع بالبطاقة",
+      "payManual": "دفع يدوي (نقدًا / تحويل)",
+      "registeredTitle": "تم تسجيل الاشتراك",
+      "pendingManual": "في انتظار تأكيد الإدارة."
+    },
+    "services": {
+      "sectionTitle": "الخدمات",
+      "viewDetails": "عرض التفاصيل",
+      "unlocked": "مفعّل — الوصول نشط",
+      "alreadyInCart": "موجود بالفعل في السلة",
+      "addToCart": "أضف إلى السلة",
+      "process": "سير العملية",
+      "advantages": "المزايا",
+      "notes": "ملاحظات",
+      "availableForms": "الاستمارات المتاحة",
+      "toFill": "يجب ملؤها",
+      "notFound": "الخدمة غير موجودة."
+    },
+    "universities": {
+      "sectionTitle": "الجامعات"
+    },
+    "formStatus": {
+      "submitted": "تم الإرسال، في انتظار المراجعة",
+      "in_review": "قيد المراجعة",
+      "approved": "مقبول",
+      "changes_requested": "طُلبت تعديلات"
+    },
+    "forms": {
+      "notFound": "الاستمارة غير موجودة.",
+      "changesRequested": "التعديلات المطلوبة:",
+      "select": "اختر...",
+      "submitted": "تم إرسال الاستمارة بنجاح.",
+      "update": "تحديث ما أرسلته",
+      "submit": "إرسال",
+      "backToService": "العودة إلى الخدمة"
+    },
+    "announcements": {
+      "title": "الإعلانات"
+    },
+    "testPrep": {
+      "open": "فتح مساحة التحضير",
+      "locked": "هذه الخدمة غير مفعّلة لك بعد.",
+      "viewService": "عرض الخدمة",
+      "courses": "الدروس",
+      "noCourses": "لا توجد دروس متاحة حاليًا.",
+      "mockTests": "الاختبارات التجريبية",
+      "noTests": "لا توجد اختبارات متاحة حاليًا.",
+      "bestScore": "أفضل نتيجة",
+      "backToTrack": "رجوع",
+      "courseNotFound": "الدرس غير موجود.",
+      "testNotFound": "الاختبار غير موجود.",
+      "questions": "أسئلة",
+      "timedWarning": "كل قسم موقوت ويبدأ بمجرد الضغط على \"بدء\". عند انتهاء الوقت، تنتقل تلقائيًا إلى القسم التالي.",
+      "start": "بدء",
+      "grading": "جارٍ التصحيح...",
+      "ungraded": "غير مُقيَّم",
+      "correct": "إجابات صحيحة",
+      "reviewYourWriting": "راجع إجابتك",
+      "yourAnswer": "إجابتك",
+      "noAnswer": "لم تُقدَّم أي إجابة.",
+      "modelAnswer": "إجابة نموذجية",
+      "question": "السؤال",
+      "finish": "إنهاء",
+      "nextSection": "القسم التالي",
+      "listen": "استماع",
+      "played": "تم الاستماع",
+      "words": "كلمة",
+      "minWords": "الحد الأدنى {{count}} كلمة"
+    }
+  }
+}
