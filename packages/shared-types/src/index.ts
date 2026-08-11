@@ -23,7 +23,7 @@ export interface BrandingConfig {
 }
 
 export const DEFAULT_BRANDING: BrandingConfig = {
-  bgColor: '#F4F1EC',
+  bgColor: '#DAD1C8',
   primaryColor: '#9BACD8',
   ctaColor: '#F98513',
 };

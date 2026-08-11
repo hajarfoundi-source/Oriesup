@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import { AppShell } from '../../components/AppShell';
+import { Logo } from '../../components/Logo';
 
 export function AdminLayout() {
   return (
     <AppShell
-      brandLabel="Oriesup Admin"
+      logo={<Logo className="w-full h-auto" />}
       navItems={[
         { to: '/admin', label: 'Dashboard' },
         { to: '/admin/schools', label: 'Écoles' },

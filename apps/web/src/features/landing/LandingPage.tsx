@@ -1,13 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher';
 import { Button } from '../../components/Button';
+import { Logo } from '../../components/Logo';
 
 export function LandingPage() {
   const { t } = useTranslation();
   return (
     <div className="min-h-screen">
       <header className="flex items-center justify-between px-6 py-5">
-        <div className="font-display text-xl font-bold text-neutral-800">{t('appName')}</div>
+        <Logo className="h-16 w-auto" />
         <LanguageSwitcher />
       </header>
       <main className="mx-auto flex max-w-3xl flex-col items-center px-6 py-24 text-center">
