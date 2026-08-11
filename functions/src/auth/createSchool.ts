@@ -1,7 +1,7 @@
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db, auth } from '../lib/admin';
-import { requireRole } from '../lib/httpsError';
+import { requireRole, parseInput } from '../lib/httpsError';
 import { localeSchema } from '../lib/localeSchema';
 import { DEFAULT_BRANDING, type SchoolDoc, type UserDoc } from '@oriesup/shared-types';
 
@@ -17,7 +17,7 @@ const schema = z.object({
 /** Admin-only: provisions a new school tenant plus its first staff login. */
 export const createSchool = onCall(async (request) => {
   requireRole(request.auth, 'admin');
-  const input = schema.parse(request.data);
+  const input = parseInput(schema, request.data);
 
   const existingSlug = await db.collection('schools').where('slug', '==', input.slug).limit(1).get();
   if (!existingSlug.empty) {

@@ -2,6 +2,7 @@ import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db, auth } from '../lib/admin';
 import { localeSchema } from '../lib/localeSchema';
+import { parseInput } from '../lib/httpsError';
 import type { StudentDoc, UserDoc } from '@oriesup/shared-types';
 
 const schema = z.object({
@@ -20,7 +21,7 @@ const schema = z.object({
  * immediately (avoids the "claims need a token refresh" gotcha).
  */
 export const redeemSignupInvite = onCall(async (request) => {
-  const input = schema.parse(request.data);
+  const input = parseInput(schema, request.data);
 
   const inviteRef = db.collection('inviteTokens').doc(input.token);
 

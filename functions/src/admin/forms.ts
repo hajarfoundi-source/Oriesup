@@ -1,7 +1,7 @@
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db } from '../lib/admin';
-import { requireRole } from '../lib/httpsError';
+import { requireRole, parseInput } from '../lib/httpsError';
 import type { FormDoc, FormSubmissionDoc } from '@oriesup/shared-types';
 
 const fieldSchema = z.object({
@@ -29,7 +29,7 @@ const formSchema = z.object({
 /** Admin-only: defines a fillable form (university/scholarship application, test-prep checklist, etc.) tied to a service. */
 export const createForm = onCall(async (request) => {
   requireRole(request.auth, 'admin');
-  const input = formSchema.parse(request.data);
+  const input = parseInput(formSchema, request.data);
 
   const serviceSnap = await db.collection('services').doc(input.serviceId).get();
   if (!serviceSnap.exists) throw new HttpsError('not-found', 'Service not found.');
@@ -41,8 +41,8 @@ export const createForm = onCall(async (request) => {
 
 export const updateForm = onCall(async (request) => {
   requireRole(request.auth, 'admin');
-  const { formId, ...rest } = z.object({ formId: z.string() }).passthrough().parse(request.data);
-  const input = formSchema.partial().extend({ active: z.boolean().optional() }).parse(rest);
+  const { formId, ...rest } = parseInput(z.object({ formId: z.string() }).passthrough(), request.data);
+  const input = parseInput(formSchema.partial().extend({ active: z.boolean().optional() }), rest);
   await db.collection('forms').doc(formId).update(input);
   return { ok: true };
 });
@@ -60,7 +60,7 @@ const reviewSchema = z.object({
 /** Admin or the submission's own school staff may review a submitted form. */
 export const reviewFormSubmission = onCall(async (request) => {
   const auth = requireRole(request.auth, 'admin', 'school');
-  const input = reviewSchema.parse(request.data);
+  const input = parseInput(reviewSchema, request.data);
 
   const ref = db.collection('formSubmissions').doc(input.submissionId);
   const snap = await ref.get();

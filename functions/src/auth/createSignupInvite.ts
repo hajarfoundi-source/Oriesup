@@ -2,7 +2,7 @@ import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { customAlphabet } from 'nanoid';
 import { z } from 'zod';
 import { db } from '../lib/admin';
-import { requireRole } from '../lib/httpsError';
+import { requireRole, parseInput } from '../lib/httpsError';
 import type { InviteTokenDoc } from '@oriesup/shared-types';
 
 const nanoid = customAlphabet('0123456789abcdefghijklmnopqrstuvwxyz', 12);
@@ -15,7 +15,7 @@ const schema = z.object({
 /** Called by school staff (or admin) to mint a shareable multi-use student signup link. */
 export const createSignupInvite = onCall(async (request) => {
   const auth = requireRole(request.auth, 'admin', 'school');
-  const input = schema.parse(request.data);
+  const input = parseInput(schema, request.data);
 
   const schoolId = auth.token.role === 'admin' ? (request.data?.schoolId as string | undefined) : (auth.token.schoolId as string);
   if (!schoolId) throw new HttpsError('invalid-argument', 'schoolId is required for admin-initiated invites.');

@@ -1,7 +1,7 @@
 import { onCall } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db } from '../lib/admin';
-import { requireRole } from '../lib/httpsError';
+import { requireRole, parseInput } from '../lib/httpsError';
 import { ADMISSION_TESTS, DEGREE_TYPES, type StudentProfile } from '@oriesup/shared-types';
 
 /**
@@ -112,7 +112,7 @@ const schema = z
  */
 export const submitStudentProfile = onCall(async (request) => {
   const auth = requireRole(request.auth, 'student');
-  const input = schema.parse(request.data);
+  const input = parseInput(schema, request.data);
   const schoolId = auth.token.schoolId as string;
 
   const profile: StudentProfile = { ...input, completedAt: Date.now() };

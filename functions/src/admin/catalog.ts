@@ -1,7 +1,7 @@
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db } from '../lib/admin';
-import { requireRole } from '../lib/httpsError';
+import { requireRole, parseInput } from '../lib/httpsError';
 import type { ProgramDoc, ServiceDoc, UniversityDoc } from '@oriesup/shared-types';
 
 const localizedText = z.object({ fr: z.string().min(1), ar: z.string().optional(), en: z.string().optional() });
@@ -32,7 +32,7 @@ const serviceSchema = z.object({
 /** Admin-only: create a purchasable service (a priced bundle of universities). */
 export const createService = onCall(async (request) => {
   requireRole(request.auth, 'admin');
-  const input = serviceSchema.parse(request.data);
+  const input = parseInput(serviceSchema, request.data);
   const doc: ServiceDoc = { ...input, active: true };
   const ref = await db.collection('services').add(doc);
   return { serviceId: ref.id };
@@ -40,8 +40,8 @@ export const createService = onCall(async (request) => {
 
 export const updateService = onCall(async (request) => {
   requireRole(request.auth, 'admin');
-  const { serviceId, ...rest } = z.object({ serviceId: z.string() }).passthrough().parse(request.data);
-  const input = serviceSchema.partial().parse(rest);
+  const { serviceId, ...rest } = parseInput(z.object({ serviceId: z.string() }).passthrough(), request.data);
+  const input = parseInput(serviceSchema.partial(), rest);
   await db.collection('services').doc(serviceId).update(input);
   return { ok: true };
 });
@@ -56,7 +56,7 @@ const universitySchema = z.object({
 /** Admin-only: create a university entry in the global catalog. */
 export const createUniversity = onCall(async (request) => {
   requireRole(request.auth, 'admin');
-  const input = universitySchema.parse(request.data);
+  const input = parseInput(universitySchema, request.data);
   const doc: UniversityDoc = { ...input, logoUrl: '' };
   const ref = await db.collection('universities').add(doc);
   return { universityId: ref.id };
@@ -73,7 +73,7 @@ const programSchema = z.object({
 /** Admin-only: create a program under a university, tagged with RIASEC dimensions. */
 export const createProgram = onCall(async (request) => {
   requireRole(request.auth, 'admin');
-  const { universityId, ...rest } = programSchema.parse(request.data);
+  const { universityId, ...rest } = parseInput(programSchema, request.data);
   const universitySnap = await db.collection('universities').doc(universityId).get();
   if (!universitySnap.exists) throw new HttpsError('not-found', 'University not found.');
 

@@ -3,7 +3,7 @@ import { z } from 'zod';
 import Stripe from 'stripe';
 import type { Request, Response } from 'express';
 import { db } from '../lib/admin';
-import { requireAuth } from '../lib/httpsError';
+import { requireAuth, parseInput } from '../lib/httpsError';
 import { STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET } from '../lib/secrets';
 
 function getStripeClient(): Stripe {
@@ -19,7 +19,7 @@ const schema = z.object({
 /** Builds a single Checkout Session covering every order in the cart (all orders must share one currency). */
 export const createStripeCheckoutSession = onCall({ secrets: [STRIPE_SECRET_KEY] }, async (request) => {
   requireAuth(request.auth);
-  const input = schema.parse(request.data);
+  const input = parseInput(schema, request.data);
 
   const orderRefs = input.orderIds.map((id) => db.collection('orders').doc(id));
   const orderSnaps = await Promise.all(orderRefs.map((ref) => ref.get()));

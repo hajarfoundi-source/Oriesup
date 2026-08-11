@@ -1,7 +1,7 @@
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db } from '../lib/admin';
-import { requireRole } from '../lib/httpsError';
+import { requireRole, parseInput } from '../lib/httpsError';
 import type { FormDoc, FormSubmissionDoc } from '@oriesup/shared-types';
 
 const schema = z.object({
@@ -16,7 +16,7 @@ const schema = z.object({
  */
 export const submitFormResponse = onCall(async (request) => {
   const auth = requireRole(request.auth, 'student');
-  const input = schema.parse(request.data);
+  const input = parseInput(schema, request.data);
   const schoolId = auth.token.schoolId as string;
 
   const formSnap = await db.collection('forms').doc(input.formId).get();

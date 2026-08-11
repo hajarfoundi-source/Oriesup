@@ -1,7 +1,7 @@
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db } from '../lib/admin';
-import { requireRole } from '../lib/httpsError';
+import { requireRole, parseInput } from '../lib/httpsError';
 import { computeHollandCode, computeScores, scoreRecommendations } from './scoring';
 import { getCandidatePrograms } from './entitledCandidates';
 import type { RiasecDimension, TestResultDoc } from '@oriesup/shared-types';
@@ -17,7 +17,7 @@ const schema = z.object({
  */
 export const submitRiasecTest = onCall(async (request) => {
   const auth = requireRole(request.auth, 'student');
-  const { answers } = schema.parse(request.data);
+  const { answers } = parseInput(schema, request.data);
   const schoolId = auth.token.schoolId as string;
   const studentUid = auth.uid;
 

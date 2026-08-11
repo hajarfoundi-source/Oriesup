@@ -3,7 +3,7 @@ import { z } from 'zod';
 import crypto from 'crypto';
 import type { Request, Response } from 'express';
 import { db } from '../lib/admin';
-import { requireAuth } from '../lib/httpsError';
+import { requireAuth, parseInput } from '../lib/httpsError';
 import { CMI_STORE_KEY } from '../lib/secrets';
 
 /**
@@ -22,7 +22,7 @@ const schema = z.object({
 
 export const createCmiPaymentRequest = onCall({ secrets: [CMI_STORE_KEY] }, async (request) => {
   requireAuth(request.auth);
-  const input = schema.parse(request.data);
+  const input = parseInput(schema, request.data);
 
   const orderRef = db.collection('orders').doc(input.orderId);
   const orderSnap = await orderRef.get();

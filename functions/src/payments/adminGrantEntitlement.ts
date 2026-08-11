@@ -1,7 +1,7 @@
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db } from '../lib/admin';
-import { requireRole } from '../lib/httpsError';
+import { requireRole, parseInput } from '../lib/httpsError';
 import type { OrderDoc } from '@oriesup/shared-types';
 
 const schema = z.object({
@@ -18,7 +18,7 @@ const schema = z.object({
  */
 export const adminGrantEntitlement = onCall(async (request) => {
   const auth = requireRole(request.auth, 'admin');
-  const input = schema.parse(request.data);
+  const input = parseInput(schema, request.data);
 
   const studentRef = db.collection('schools').doc(input.schoolId).collection('students').doc(input.studentId);
   const studentSnap = await studentRef.get();

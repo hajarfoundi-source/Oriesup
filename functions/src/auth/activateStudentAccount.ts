@@ -1,6 +1,7 @@
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db, auth } from '../lib/admin';
+import { parseInput } from '../lib/httpsError';
 
 const schema = z.object({
   activationToken: z.string().min(4),
@@ -14,7 +15,7 @@ const schema = z.object({
  * student doc to 'active'. Single-use, tied to a specific uid.
  */
 export const activateStudentAccount = onCall(async (request) => {
-  const input = schema.parse(request.data);
+  const input = parseInput(schema, request.data);
   const inviteRef = db.collection('inviteTokens').doc(input.activationToken);
 
   const { schoolId, studentUid } = await db.runTransaction(async (tx) => {

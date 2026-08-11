@@ -1,7 +1,7 @@
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db } from '../lib/admin';
-import { requireRole } from '../lib/httpsError';
+import { requireRole, parseInput } from '../lib/httpsError';
 
 const schema = z.object({
   orderId: z.string(),
@@ -12,7 +12,7 @@ const schema = z.object({
 /** Platform-admin-only: marks a cash/bank-transfer order as paid, with an audit trail. */
 export const confirmManualPayment = onCall(async (request) => {
   const auth = requireRole(request.auth, 'admin');
-  const input = schema.parse(request.data);
+  const input = parseInput(schema, request.data);
 
   const orderRef = db.collection('orders').doc(input.orderId);
   const orderSnap = await orderRef.get();

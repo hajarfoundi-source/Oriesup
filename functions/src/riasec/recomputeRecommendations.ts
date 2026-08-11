@@ -1,7 +1,7 @@
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { z } from 'zod';
 import { db } from '../lib/admin';
-import { requireRole } from '../lib/httpsError';
+import { requireRole, parseInput } from '../lib/httpsError';
 import { scoreRecommendations } from './scoring';
 import { getCandidatePrograms } from './entitledCandidates';
 
@@ -13,7 +13,7 @@ const schema = z.object({
 /** Admin or the owning school can refresh recommendations after the catalog changes, without a retake. */
 export const recomputeRecommendations = onCall(async (request) => {
   const auth = requireRole(request.auth, 'admin', 'school');
-  const { studentUid, resultId } = schema.parse(request.data);
+  const { studentUid, resultId } = parseInput(schema, request.data);
 
   const schoolId = auth.token.role === 'admin' ? (request.data?.schoolId as string | undefined) : (auth.token.schoolId as string);
   if (!schoolId) throw new HttpsError('invalid-argument', 'schoolId is required.');

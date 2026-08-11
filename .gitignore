@@ -1,7 +1,7 @@
 node_modules/
 *.tgz
 dist/
-lib/
+/functions/lib/
 .env
 .env.*
 !.env.example
@@ -11,4 +11,5 @@ firebase-debug.log
 firestore-debug.log
 ui-debug.log
 *.local
+*.local.js
 .DS_Store
